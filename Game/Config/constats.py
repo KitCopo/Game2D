@@ -6,4 +6,8 @@ DisplaySize : tuple[int,int] = (900,580) #tamanho da janela do game
 
 #World
 
-BlocksSize : tuple[int,int] = (64,64)
+BlocksSize : tuple[int,int] = (32,32)
+
+#Camera 
+
+Velocity : int = 0.2
