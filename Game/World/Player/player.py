@@ -35,30 +35,26 @@ class player:
     
     def animation(self) -> None:
         if self.state == "stop":
-            self.currents_sprite += AnimationVelocity
-            if self.currents_sprite > 5:  # Sprites de idle (0 a 5)
+            if self.currents_sprite > 4:  # Sprites de idle (0 a 5)
                 self.currents_sprite = 0
         
         elif self.state == "up":
-            self.currents_sprite += AnimationVelocity
             if self.currents_sprite > 10:  # Sprites de movimento (6 a 10)
                 self.currents_sprite = 6  # Volta para 6 para repetir o ciclo
         
         elif self.state == 'down': 
-            self.currents_sprite += AnimationVelocity
             if self.currents_sprite > 16:
                 self.currents_sprite = 12 
         
-        elif self.state == "right": 
-            self.currents_sprite += AnimationVelocity 
+        elif self.state == "right":  
             if self.currents_sprite > 22: 
                 self.currents_sprite = 17
         
         elif self.state == "left":
-            self.currents_sprite += AnimationVelocity
             if self.currents_sprite > 22:
                 self.currents_sprite = 17
         
+        self.currents_sprite += AnimationVelocity
         self.image = self.Sprites[int(self.currents_sprite)]
     
     def attack(self) -> None: 
