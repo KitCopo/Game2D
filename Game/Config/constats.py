@@ -10,4 +10,4 @@ BlocksSize : tuple[int,int] = (32,32)
 
 #Camera 
 
-Velocity : int = 0.2
+Velocity : int = 1
