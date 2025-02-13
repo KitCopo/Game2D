@@ -10,4 +10,8 @@ BlocksSize : tuple[int,int] = (32,32)
 
 #Camera 
 
-Velocity : int = 1
+Velocity : int = 4
+
+#Player 
+
+AnimationVelocity = 0.1

@@ -42,8 +42,8 @@ class World:
 
         for y, linha in enumerate(self.world):
             for x, tile in enumerate(linha):
-                pos_x = x * BlocksSize[0] + 2 + self.camera.offsetX
-                pos_y = y * BlocksSize[1] + 2 + self.camera.offsetY
+                pos_x = x * BlocksSize[0] + 2 + self.camera.offset.x
+                pos_y = y * BlocksSize[1] + 2 + self.camera.offset.y
 
                 match tile: 
                     case 0:

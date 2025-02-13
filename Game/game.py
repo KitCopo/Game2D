@@ -1,8 +1,9 @@
 import pygame
 from Config.constats import *
-from World.world import *
 from Camera.camera import *
+from World.world import *
 from World.Player.player import *
+from World.tree.tree import *
 
 class Game: 
     def __init__(self) -> None: 
@@ -14,17 +15,21 @@ class Game:
         self.Camera : Camera = Camera()
         self.world : World = World(self.Camera)
         self.player : player = player()
+        self.tree  : tree = tree(self.Camera)
+
+        self.clock = pygame.time.Clock()
 
     def Render(self) -> None:
         self.display.fill((0,0,0))
 
         self.world.render(self.display)
         self.player.render(self.display)
+        self.tree.render(self.display)
 
         pygame.display.flip()
 
     def update(self) -> None:
-        run : bool = True 
+        run : bool = True
         while run:   
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -32,15 +37,25 @@ class Game:
             
             keys = pygame.key.get_pressed()
             if keys[pygame.K_w]:
+                self.player.ChangeState("up")
                 self.Camera.move("up")
             if keys[pygame.K_s]:
+                self.player.ChangeState("down")
                 self.Camera.move("down")
             if keys[pygame.K_a]:
+               self.player.ChangeState("left")
                self.Camera.move("left")
             if keys[pygame.K_d]:
+               self.player.ChangeState("right")
                self.Camera.move("right")
+            
+            if not (keys[pygame.K_w] or keys[pygame.K_s] or keys[pygame.K_a] or keys[pygame.K_d]):
+                self.player.ChangeState("stop")
 
             self.Render()
+
+            self.clock.tick(60)
+            print(int(self.clock.get_fps()))
 
 if __name__ == "__main__": 
     game : Game = Game()
