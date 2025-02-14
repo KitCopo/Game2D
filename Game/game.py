@@ -30,7 +30,8 @@ class Game:
 
     def update(self) -> None:
         run : bool = True
-        while run:   
+        while run: 
+            deltaTime = self.clock.get_time() / 1000
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False 
@@ -38,23 +39,23 @@ class Game:
             keys = pygame.key.get_pressed()
             if keys[pygame.K_w]:
                 self.player.ChangeState("up")
-                self.Camera.move("up")
+                self.Camera.move("up",deltaTime)
             if keys[pygame.K_s]:
                 self.player.ChangeState("down")
-                self.Camera.move("down")
+                self.Camera.move("down",deltaTime)
             if keys[pygame.K_a]:
                self.player.ChangeState("left")
-               self.Camera.move("left")
+               self.Camera.move("left",deltaTime)
             if keys[pygame.K_d]:
                self.player.ChangeState("right")
-               self.Camera.move("right")
+               self.Camera.move("right",deltaTime)
             
             if not (keys[pygame.K_w] or keys[pygame.K_s] or keys[pygame.K_a] or keys[pygame.K_d]):
                 self.player.ChangeState("stop")
 
             self.Render()
 
-            self.clock.tick(60)
+            self.clock.tick(120)
             print(int(self.clock.get_fps()))
 
 if __name__ == "__main__": 
